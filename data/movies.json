@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Spirited Away",
+        "director": "Hayao Miyazaki",
+        "releaseDate": "2001-07-20",
+        "genres": ["Animation", "Fantasy"],
+        "rating": 8.6,
+        "watched": true
+    },
+    {
+        "id": 2,
+        "title": "The Lord of the Rings: The Fellowship of the Ring",
+        "director": "Peter Jackson",
+        "releaseDate": "2001-12-19",
+        "genres": ["Fantasy", "Adventure"],
+        "rating": 8.8,
+        "watched": true
+    },
+    {
+        "id": 3,
+        "title": "Harry Potter and the Sorcerer's Stone",
+        "director": "Chris Columbus",
+        "releaseDate": "2001-11-16",
+        "genres": ["Fantasy", "Adventure"],
+        "rating": 7.6,
+        "watched": true
+    },
+    {
+        "id": 4,
+        "title": "The Hunger Games",
+        "director": "Gary Ross",
+        "releaseDate": "2012-03-23",
+        "genres": ["Action", "Sci-Fi"],
+        "rating": 7.2,
+        "watched": false
+    }
+]
