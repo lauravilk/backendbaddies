@@ -2,9 +2,19 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const { engine } = require("express-handlebars");
+const mongoose = require('mongoose');
+require('dotenv').config();
+const Movies = require('./models/Movies');
 
 const app = express();
 const PORT = 3000;
+
+const uri = process.env.URI;
+
+//Tietokantayhteys
+mongoose.connect(uri)
+.then((result) => console.log("Connected to DB"))
+.catch((err) => console.log(err));
 
 //Parsinnat ja staattiset filut
 app.use(express.json());
