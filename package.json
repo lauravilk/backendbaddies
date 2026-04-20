@@ -2,10 +2,10 @@
   "name": "backendbaddies",
   "version": "1.0.0",
   "description": "Web framework project",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node backendbaddies",
-    "dev": "nodemon backendbaddies",
+    "start": "node",
+    "dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
