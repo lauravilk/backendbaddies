@@ -101,20 +101,25 @@ if (watched !== undefined) movie.watched = watched === true || watched === "true
 res.json(movie);
 });
 
-// DELETE leffa
-app.delete("/api/movies/:id", (req, res) => {
-    const id = parseInt(req.params.id);
-    const index = movies.findIndex(m => m.id === id);
-
-if (index === -1) {
-    return res.status(404).json({ message: "Movie not found" });
-}
-
-const deletedMovie = movies.splice(index, 1);
-    res.json({
-        message: "Movie deleted successfully",
-        deletedMovie: deletedMovie[0]
-    });
+// DELETE movie by id
+app.delete('/movies/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const MovieToRemove = await Movies.findByIdAndDelete(id);
+        if (MovieToRemove)
+        {
+            res.status(200).json({
+                msg: 'Movie deleted'
+            });
+        }
+        res.json(MovieToRemove)
+    }
+    catch (err) {
+        console.log(error);
+        res.status(500).json({
+            msg: 'Error, movie can not be deleted'
+        })
+    }
 });
 
 
