@@ -35,21 +35,25 @@ app.get("/", (req, res) => {
 res.redirect("/movies-page");
 });
 
-// GET kaikki leffat
-app.get("/api/movies", (req, res) => {
-res.json(movies);
-});
-
-// GET yks leffa
-app.get("/api/movies/:id", (req, res) => {
-const id = parseInt(req.params.id);
-const movie = movies.find(m => m.id === id);
-
-if (!movie) {
-    return res.status(404).json({ message: "Movie not found" });
-}
-
-res.json(movie);
+// GET movie by id
+app.get('/movies/:id', async (req,res) => {
+    const id = req.params.id;
+    console.log(id)
+    try {
+        const movie = await Movies.findById(id);
+        if (movie)
+        {
+            res.status(200).json(movie);
+        }
+    res.json(movie);
+    }
+    catch (err) {
+        console.log(error);
+        res.status(500).json({
+            msg: 'Error! Movie not found'
+        })
+    }
+    
 });
 
 // POST uus leffa
