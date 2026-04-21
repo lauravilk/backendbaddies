@@ -10,11 +10,8 @@
         <p>{{movie.watched}}</p>
     </div>
 
-<div style="display: flex; gap: 40px;">
-
-
+<h2>Change the info:</h2>
     <div>
-        <h2>Change the info:</h2>
 
         <form action="/movies/edit/{{movie._id}}" method="POST">
             <input type="text" name="title" value="{{movie.title}}">
@@ -32,4 +29,3 @@
         </form>
     </div>
 
-</div>

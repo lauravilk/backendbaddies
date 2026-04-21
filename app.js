@@ -83,9 +83,28 @@ res.status(201).json(newMovie);
 });
 
 //EDIT MOVIE
-//edit route
-app.get("/movies/edit/:id", async (req,res) => {
-    const movie = await Movies.findById(req.params.id).lean();
+//edit movie route, by id or name
+app.get("/movies/edit/:value", async (req,res) => {
+    const value = req.params.value;
+
+    let movie; 
+    //katsotaan onko value mongodb id
+    const isValueId = value.length === 24;
+
+    if (isValueId) {
+        movie = await Movies.findById(value).lean();
+    }
+    //jos ei ole id etsii nimellä
+    else {
+        movie = await Movies.findOne({
+            //etsitään valuea vastaava teksti regexillä, ignorataan iso ja pieni kirjain 
+            title: {$regex: value, $options: "i"}
+        }).lean();
+    }
+    //jos value ei vastaa mitään, error
+    if (!movie){
+        return res.status(404).send("Movie not found");
+    }
     res.render("editMovie", { movie });
 });
 
