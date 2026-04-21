@@ -21,8 +21,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Handlebar
-app.engine("handlebars", engine());
+// Handlebar ja partialit
+app.engine("handlebars", engine({
+    defaultLayout: "main",
+    partialsDir: path.join(__dirname, "views/partials")
+}));
+
 app.set("view engine", "handlebars");
 app.set("views", path.join(__dirname, "views"));
 
