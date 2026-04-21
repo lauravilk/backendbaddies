@@ -1,0 +1,35 @@
+<h1>Edit Movie</h1>
+
+    <div class="movie-card">
+        <h3>Current info</h3>
+        <p>{{movie.title}}</p>
+        <p>{{movie.director}}</p>
+        <p>{{movie.releaseDate}}</p>
+        <p>{{movie.genres}}</p>
+        <p>{{movie.rating}}</p>
+        <p>{{movie.watched}}</p>
+    </div>
+
+<div style="display: flex; gap: 40px;">
+
+
+    <div>
+        <h2>Change the info:</h2>
+
+        <form action="/movies/edit/{{movie._id}}" method="POST">
+            <input type="text" name="title" value="{{movie.title}}">
+            <input type="text" name="director" value="{{movie.director}}">
+            <input type="date" name="releaseDate" value="{{movie.releaseDate}}">
+            <input type="text" name="genres" value="{{movie.genres}}">
+            <input type="number" name="rating" value="{{movie.rating}}">
+
+            <label>
+                Watched:
+                <input type="checkbox" name="watched" {{#if movie.watched}}checked{{/if}}>
+            </label>
+
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+</div>

@@ -82,28 +82,62 @@ movies.push(newMovie);
 res.status(201).json(newMovie);
 });
 
-// PUT update leffa
-app.put("/api/movies/:id", (req, res) => {
-const id = parseInt(req.params.id);
-const movie = movies.find(m => m.id === id);
-
-if (!movie) {
-    return res.status(404).json({ message: "Movie not found" });
-}
-
-const { title, director, releaseDate, genres, rating, watched } = req.body;
-
-if (title !== undefined) movie.title = title;
-if (director !== undefined) movie.director = director;
-if (releaseDate !== undefined) movie.releaseDate = releaseDate;
-if (genres !== undefined) {
-    movie.genres = Array.isArray(genres) ? genres : genres.split(",").map(g => g.trim());
-}
-if (rating !== undefined) movie.rating = Number(rating);
-if (watched !== undefined) movie.watched = watched === true || watched === "true";
-
-res.json(movie);
+//EDIT MOVIE
+//edit route
+app.get("/movies/edit/:id", async (req,res) => {
+    const movie = await Movies.findById(req.params.id).lean();
+    res.render("editMovie", { movie });
 });
+
+app.post("/movies/edit/:id", async (req,res) => {
+    await Movies.findByIdAndUpdate(req.params.id, {
+        title : req.body.title,
+        director: req.body.director,
+        releaseDate: req.body.releaseDate,
+        genres: req.body.genres.split(",").map(g => g.trim()),
+        rating: Number(req.body.rating),
+        watched: req.body.watched === "on"
+    });
+    res.redirect("/");
+})
+//api
+app.put("/api/movies/:id", async (req,res) => {
+    try {
+        //datan haku
+        const { title, director, releaseDate, genres, rating, watched } = req.body;
+
+        //mongoon päivitys
+        const updatedMovie = await Movies.findByIdAndUpdate (
+            req.params.id,
+            //päivitettävä data
+            {
+                title,
+                director,
+                releaseDate,
+                // katotaan löytyykö lisätty tieto jo genrestä, jos ei lisää listaan uuden String
+                genres: Array.isArray(genres)
+                    ? genres
+                    : genres?.split(",").map(g => g.trim()),
+                rating: Number(rating),
+                watched: watched === true || watched === "true"
+            },
+            //palauttaa päivitetyn version
+            {new: true}
+        );
+
+        //jos id ei löydy
+        if(!updatedMovie) {
+            return res.status(404).send("Movie not found.");
+        }
+
+        res.json(updatedMovie);
+    }
+    //errors
+    catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
 
 // DELETE movie by id
 app.delete('/movies/:id', async (req, res) => {
