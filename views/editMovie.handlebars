@@ -1,5 +1,6 @@
 <h1>Edit Movie</h1>
 
+{{!-- Elokuvakortti ja tiedot --}}
     <div class="movie-card">
         <h3>Current info</h3>
         <p>{{movie.title}}</p>
@@ -12,7 +13,7 @@
 
 <h2>Change the info:</h2>
     <div>
-
+{{!-- Form tietojen muokkaamiseen --}}
         <form action="/movies/edit/{{movie._id}}" method="POST">
             <input type="text" name="title" value="{{movie.title}}">
             <input type="text" name="director" value="{{movie.director}}">
