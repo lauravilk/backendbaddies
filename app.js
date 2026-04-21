@@ -180,11 +180,13 @@ app.delete('/movies/:id', async (req, res) => {
 });
 
 
-app.get("/movies-page", (req, res) => {
-res.render("movies", {
-    title: "Movie List",
-    movies
-});
+app.get("/movies-page", async (req, res) => {
+    const movies = await Movies.find().lean();
+
+    res.render("movies", {
+        title: "Movie List",
+        movies
+    });
 });
 
 app.listen(PORT, () => {
