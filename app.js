@@ -124,26 +124,40 @@ app.post('/api/movies/search/:key', async (req, res) => {
     }
  });
 
-// POST uus leffa
-app.post("/api/movies", (req, res) => {
-const { title, director, releaseDate, genres, rating, watched } = req.body;
+// Lisää uusi elokuva
+app.get('/movies/add-movie/', (req,res) => {
+    res.render("addMovie");
+});
 
-if (!title || !director || !releaseDate || !genres || rating === undefined || watched === undefined) {
-    return res.status(400).json({ message: "Missing required fields" });
-}
+//api lisää elokuva
+app.post("/api/movies", async (req, res) => {
+    try{
+        const { title, director, releaseDate, genres, rating, watched } = req.body;
+        
+        //tietojen validointi
+        if (!title || !director || !releaseDate || !genres || rating === undefined) {
+            return res.status(400).json({ message: "Missing required fields" });
+        }
 
-const newMovie = {
-    id: movies.length > 0 ? Math.max(...movies.map(m => m.id)) + 1 : 1,
-    title,
-    director,
-    releaseDate,
-    genres: Array.isArray(genres) ? genres : genres.split(",").map(g => g.trim()),
-    rating: Number(rating),
-    watched: watched === true || watched === "true"
-};
+        const newMovie = new Movies({
+            title,
+            director,
+            releaseDate,
+            genres: Array.isArray(genres) ? genres : genres.split(",").map(g => g.trim()),
+            rating: Number(rating),
+            watched: watched === "true" || watched === "on"
+        });
 
-movies.push(newMovie);
-res.status(201).json(newMovie);
+        await newMovie.save();
+        res.redirect("/movies-page");
+
+    }
+    catch(err) {
+        res.status(500).json({
+            msg: "error"
+        });
+    }
+
 });
 
 //EDIT MOVIE

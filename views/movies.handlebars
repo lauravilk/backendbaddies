@@ -10,6 +10,12 @@
     <h1>Search results "{{key}}" </h1>
 {{/if}}
 
+<label name="Add a new movie">
+    <a href="/movies/add-movie/">
+            <button>Add new movie</button>
+    </a>
+</label>
+
 <div class="movie-container">
 {{#each movies}}
     <div class="movie-card">
@@ -28,6 +34,8 @@
     </div>
 {{/each}}
 </div>
+
+
 
 {{#if movieToRemove}}
     <h2>{{{movieToRemove.title}}} Deleted</h2>
