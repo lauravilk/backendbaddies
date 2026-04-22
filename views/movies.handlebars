@@ -2,9 +2,13 @@
 
 {{!-- Search movie kenttä --}}
 <form action="/search" method="POST">
-    <input name="key" id="searchInput" placeholder="Search movies...">
+<label for="searchInput" class="visuallyhidden">Search:</label>
+    <input type="text"name="key" id="searchInput" placeholder="Search movies...">
     <button id="searchButton">Search</button>
 </form>
+{{#if key}}
+    <h1>Search results "{{key}}" </h1>
+{{/if}}
 
 <div class="movie-container">
 {{#each movies}}
