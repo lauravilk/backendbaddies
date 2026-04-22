@@ -41,6 +41,23 @@ app.get("/", (req, res) => {
     });
 });
 
+// APIT
+
+// get all movies api
+app.get('api/movies', async (req, res) => {
+    try {
+        const result = await Movies.find();
+        res.json({
+            status: 'success',
+            results: result.length,
+            data: result
+        });
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
+
 // GET movie by id
 app.get('/movies/:id', async (req,res) => {
     const id = req.params.id;
@@ -59,8 +76,53 @@ app.get('/movies/:id', async (req,res) => {
             msg: 'Error! Movie not found'
         })
     }
-    
 });
+
+// DELETE movie by id
+app.delete('/api/movies/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const MovieToRemove = await Movies.findByIdAndDelete(id);
+        if (MovieToRemove)
+        {
+            res.status(200).json({
+                msg: 'Movie deleted'
+            });
+        }
+        res.json(MovieToRemove)
+    }
+    catch (err) {
+        console.log(error);
+        res.status(500).json({
+            msg: 'Error, movie can not be deleted'
+        })
+    }
+});
+
+// Search movies by title
+app.post('/api/search/:key', async (req, res) => {
+    const key = req.params.key
+    console.log(key);
+
+    try {
+    let data = await Movies.find(
+        {
+            "$or": [
+                {title: {$regex: key, $options: 'i'}}
+            ]
+        });
+    res.json({
+        status: 'success',
+        results: data.length,
+        data: data
+    });
+    }
+    catch (err) {
+        res.status(500).json({
+            msg: "Error"
+        })
+    }
+ });
 
 // POST uus leffa
 app.post("/api/movies", (req, res) => {
