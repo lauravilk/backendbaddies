@@ -22,6 +22,13 @@
     <a href="/movies/edit/{{this._id}}">
             <button>Edit Movie</button>
         </a>
+    <form action="/movies/delete/{{this._id}}" method="GET">
+        <button type="submit">Delete</button>
+    </form>
     </div>
 {{/each}}
 </div>
+
+{{#if movieToRemove}}
+    <h2>{{{movieToRemove.title}}} Deleted</h2>
+{{/if}}

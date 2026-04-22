@@ -181,6 +181,25 @@ app.delete('/movies/:id', async (req, res) => {
     }
 });
 
+// DELETE movie
+app.get("/movies/delete/:id", async (req,res) => {
+    const id = req.params.id;
+    try {
+        const movieToRemove = await Movies.findByIdAndDelete(id).lean();
+        if (movieToRemove)
+        {
+            // res.render("deleteMovie", {movie: movie});
+            res.render("movies", {movieToRemove: movieToRemove});
+        }
+    } catch (err) {
+        console.log(error);
+        res.status(500).json({
+            msg: 'Error, movie can not be deleted'
+        })
+    }
+    
+});
+
 // Search movies by title
 app.post('/search', async (req, res) => {
     const key = req.body.key
