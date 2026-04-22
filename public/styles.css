@@ -18,6 +18,32 @@ h1 {
     text-transform: uppercase;
 }
 
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+}
+
+.page-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.page-container section {
+    margin-bottom: 2rem;
+}
+
+.page-container img {
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    margin: 0 auto;
+}
+
 .movie-container {
     display: flex;
     flex-wrap: wrap;

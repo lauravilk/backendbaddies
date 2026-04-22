@@ -36,7 +36,9 @@ let movies = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
 // Home route
 app.get("/", (req, res) => {
-res.redirect("/movies-page");
+    res.render("home", {
+        title: "Etusivu"
+    });
 });
 
 // GET movie by id
