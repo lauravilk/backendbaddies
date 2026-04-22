@@ -59,7 +59,7 @@ app.get('/api/movies', async (req, res) => {
 });
 
 // GET movie by id
-app.get('/movies/:id', async (req,res) => {
+app.get('/api/movies/:id', async (req,res) => {
     const id = req.params.id;
     console.log(id)
     try {
@@ -100,7 +100,7 @@ app.delete('/api/movies/:id', async (req, res) => {
 });
 
 // Search movies by title
-app.post('/api/search/:key', async (req, res) => {
+app.post('/api/movies/search/:key', async (req, res) => {
     const key = req.params.key
     console.log(key);
 
