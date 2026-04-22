@@ -44,7 +44,7 @@ app.get("/", (req, res) => {
 // APIT
 
 // get all movies api
-app.get('api/movies', async (req, res) => {
+app.get('/api/movies', async (req, res) => {
     try {
         const result = await Movies.find();
         res.json({
