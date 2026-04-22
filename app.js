@@ -181,6 +181,27 @@ app.delete('/movies/:id', async (req, res) => {
     }
 });
 
+// Search movies by title
+app.post('/search', async (req, res) => {
+    const key = req.body.key
+    console.log(key);
+
+    try {
+    let data = await Movies.find(
+        {
+            "$or": [
+                {title: {$regex: key}}
+            ]
+        }).lean();
+    res.render("movies", {movies: data, key: key});
+    }
+    catch (err) {
+        res.status(500).json({
+            msg: "Error"
+        })
+    }
+ });
+
 
 app.get("/movies-page", async (req, res) => {
     const movies = await Movies.find().lean();
