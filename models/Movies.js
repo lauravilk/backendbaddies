@@ -9,7 +9,9 @@ const movieSchema = new mongoose.Schema({
     genres: Array,
     releaseDate: String,
     rating: Number,
-    watched: Boolean
+    watched: Boolean,
+    image: String,
+    alt: String
 });
 
 module.exports = mongoose.model("Movies", movieSchema);
