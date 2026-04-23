@@ -297,6 +297,20 @@ app.post('/search', async (req, res) => {
     }
  });
 
+ // Search movies by genre
+ app.post('/movies/search/genre', async (req, res) => {
+    const genres = req.body.genre
+    console.log(genres);
+    try {
+        const category = await Movies.find({genres: genres}).lean();
+        res.render("movies", {movies: category, genres: genres});  
+    } catch (err) {
+        res.status(500).json({
+            msg: "Kategoriaa ei löydy"
+        });
+    }
+ });
+
 
 app.get("/movies-page", async (req, res) => {
     const movies = await Movies.find().lean();

@@ -16,6 +16,22 @@
     </a>
 </label>
 
+{{!-- Hae kategorialla --}}
+<form action="/movies/search/genre/" method="POST">
+    <label for="movie">Valitse kategoria</label>
+    <select name="genre" id="movie">
+        <option value="Fantasy">Fantasy</option>
+        <option value="Action">Action</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Animation">Animation</option>
+    </select>
+    <button class="submit">Hae</button>
+</form>
+{{#if genres}}
+    <h1>Search results "{{genres}}" </h1>
+{{/if}}
+
 <div class="movie-container">
 {{#each movies}}
     <div class="movie-card">
