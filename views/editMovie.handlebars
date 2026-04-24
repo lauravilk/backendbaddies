@@ -13,13 +13,14 @@
 
 <h2>Change the info:</h2>
     <div>
-{{!-- Form tietojen muokkaamiseen --}}
-        <form action="/movies/edit/{{movie._id}}" method="POST">
+{{!-- Form tietojen muokkaamiseen / enc jotta kuva saadaan lisättyä DB--}}
+        <form action="/movies/edit/{{movie._id}}" method="POST" enctype="multipart/form-data">
             <input type="text" name="title" value="{{movie.title}}">
             <input type="text" name="director" value="{{movie.director}}">
             <input type="date" name="releaseDate" value="{{movie.releaseDate}}">
             <input type="text" name="genres" value="{{movie.genres}}">
             <input type="number" name="rating" value="{{movie.rating}}">
+            <input type="file" name="image">
 
             <label>
                 Watched:

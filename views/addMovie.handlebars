@@ -3,7 +3,7 @@
 <h2>Input movie info:</h3>
 {{!-- Elokuvakortti ja tiedot --}}
 <div class="movie-card">
-        <form action="/api/movies" method="POST">
+        <form action="/api/movies" method="POST" enctype="multipart/form-data">
             <label>
                 Movie title:
                 <input type="text" name="title" value="{{movie.title}}">
@@ -39,6 +39,11 @@
                 <input type="checkbox" name="watched" {{#if movie.watched}}checked{{/if}}>
             </label>
             <br>
+            
+            <label >
+                Image:
+                <input type="file" name="image">
+            </label>
 
             <button type="submit">Save</button>
         </form>

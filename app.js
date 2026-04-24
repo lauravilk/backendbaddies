@@ -6,6 +6,9 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const Movies = require('./models/Movies');
 
+//middleware uusien elokuvien kuvien lisäystä varten
+const multer = require('multer');
+
 const app = express();
 const PORT = 3000;
 
@@ -125,12 +128,26 @@ app.post('/api/movies/search/:key', async (req, res) => {
  });
 
 // Lisää uusi elokuva
+
+//mihin uuden elokuvan kuvat tallennetaan
+const storage = multer.diskStorage({
+    destination: (req,res, cb) => {
+        cb(null, "public/images");
+    },
+    filename: (req, file, cb) =>{
+        const imageName = Date.now() + path.extname(file.originalname);
+        cb(null, imageName);
+    }
+});
+
+const uploadImage = multer ({ storage });
+
 app.get('/movies/add-movie/', (req,res) => {
     res.render("addMovie");
 });
 
 //api lisää elokuva
-app.post("/api/movies", async (req, res) => {
+app.post("/api/movies", uploadImage.single("image"), async (req, res) => {
     try{
         const { title, director, releaseDate, genres, rating, watched } = req.body;
         
@@ -145,7 +162,10 @@ app.post("/api/movies", async (req, res) => {
             releaseDate,
             genres: Array.isArray(genres) ? genres : genres.split(",").map(g => g.trim()),
             rating: Number(rating),
-            watched: watched === "true" || watched === "on"
+            watched: watched === "true" || watched === "on",
+
+            //kuvan lisäys
+            image: req.file ? "/images/" + req.file.filename : null
         });
 
         await newMovie.save();
@@ -186,17 +206,31 @@ app.get("/movies/edit/:value", async (req,res) => {
     res.render("editMovie", { movie });
 });
 
-app.post("/movies/edit/:id", async (req,res) => {
-    await Movies.findByIdAndUpdate(req.params.id, {
+app.post("/movies/edit/:id", uploadImage.single("image"), async (req,res) => {
+    
+    try {
+        const updatedInfo = {
         title : req.body.title,
         director: req.body.director,
         releaseDate: req.body.releaseDate,
         genres: req.body.genres.split(",").map(g => g.trim()),
         rating: Number(req.body.rating),
         watched: req.body.watched === "on"
-    });
-    res.redirect("/");
-})
+    };
+    //jos uusi kuva lisätään
+    if (req.file) {
+        updatedInfo.image = "/images/" + req.file.filename;
+    }
+
+    await Movies.findByIdAndUpdate(req.params.id, updatedInfo);
+    res.redirect("/movies-page");
+}
+    catch (err){
+        res.status(404).send(err.message);
+    }
+});
+
+
 //api
 app.put("/api/movies/:id", async (req,res) => {
     try {
