@@ -37,11 +37,22 @@ app.set("views", path.join(__dirname, "views"));
 const filePath = path.join(__dirname, "data", "movies.json");
 let movies = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
-// Home route
-app.get("/", (req, res) => {
-    res.render("home", {
-        title: "Etusivu"
-    });
+// Home route ja newest movies
+app.get("/", async (req, res) => {
+    try {
+        const newestMovies = await Movies.find()
+            .sort({ releaseDate: -1 })
+            .limit(4)
+            .lean();
+
+        res.render("home", {
+            title: "Etusivu",
+            newestMovies
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Error loading home page");
+    }
 });
 
 // APIT
