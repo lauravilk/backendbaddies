@@ -44,6 +44,39 @@ h2 {
     margin: 0 auto;
 }
 
+/*************** BUTTONS SEARCH ETC ***************/
+
+/* Search input field */
+input[type="text"] {
+    padding: 8px 12px;
+    border: 2px solid #ffffff;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+}
+
+form {
+    margin: 8px 0;
+}
+
+button {
+    padding: 8px 14px;
+    background-color: #ffffff;
+    color: #0b1335;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background: rgba(139, 92, 246, 0.18);
+    color: white;
+    transform: translateY(-2px);
+}
+
+
 /*************** MOVIE CARDS ***************/
 
 .movie-container {
@@ -75,7 +108,8 @@ h2 {
 }
 
 .movie-card img {
-    width: 100%;
+    width: 200px;
+    height: 300px;
     object-fit: cover;
 }
 
