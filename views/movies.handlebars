@@ -45,8 +45,8 @@
         <a href="/movies/edit/{{this._id}}">
                 <button>Edit Movie</button>
             </a>
-        <form action="/movies/delete/{{this._id}}" method="GET">
-            <button type="submit">Delete</button>
+        <form action="/movies/delete/{{this._id}}" method="POST">
+            <button type="button" onclick="confirmDelete(this)">Delete</button>
         </form>
         </div>
     {{/each}}
@@ -58,3 +58,5 @@
         <h2>{{{movieToRemove.title}}} Deleted</h2>
     {{/if}}
 </div>
+
+<script src="/script.js"></script>

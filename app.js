@@ -320,7 +320,7 @@ app.delete('/movies/:id', async (req, res) => {
 });
 
 // DELETE movie
-app.get("/movies/delete/:id", async (req,res) => {
+app.post("/movies/delete/:id", async (req,res) => {
     const id = req.params.id;
     try {
         const movieToRemove = await Movies.findByIdAndDelete(id).lean();
