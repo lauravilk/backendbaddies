@@ -326,8 +326,7 @@ app.post("/movies/delete/:id", async (req,res) => {
         const movieToRemove = await Movies.findByIdAndDelete(id).lean();
         if (movieToRemove)
         {
-            // res.render("deleteMovie", {movie: movie});
-            res.render("movies", {movieToRemove: movieToRemove});
+            res.redirect("/movies-page");
         }
     } catch (err) {
         console.log(error);
