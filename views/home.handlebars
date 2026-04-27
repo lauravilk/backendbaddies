@@ -1,29 +1,36 @@
-<main aria-label="Frontpage content">
+<main>
     <div class="page-container">
 
-        <section aria-label="Welcome picture">
+        <section>
             <img 
                 src="/images/movie.png" 
-                alt="Four people watching movies together" width="1000px">
+                alt="Four people watching movies together"
+                width="1000"
+            >
         </section>
 
-        <section aria-labelledby="newest">
+        <section aria-labelledby="newest-movies">
             <h2 id="newest-movies">Newest movies</h2>
         </section>
 
         <div class="movie-container">
-        {{#each newestMovies}}
-            <div class="movie-card">
-                <h2>{{this.title}}</h2>
-                <img src="{{this.image}}" alt="{{this.alt}}" width="100%">
+            {{#each newestMovies}}
+                <article class="movie-card">
+                    <h3>{{this.title}}</h3>
 
-                <p><strong>Director:</strong> {{this.director}}</p>
-                <p><strong>Release date:</strong> {{this.releaseDate}}</p>
-                <p><strong>Genres:</strong> {{this.genres}}</p>
-                <p><strong>Rating:</strong> {{this.rating}}</p>
-            </div>
-        {{/each}}
-</div>
+                    <img 
+                        src="{{this.image}}" 
+                        alt="Poster of {{this.title}}" 
+                        width="100%"
+                    >
+
+                    <p><strong>Director:</strong> {{this.director}}</p>
+                    <p><strong>Release date:</strong> {{this.releaseDate}}</p>
+                    <p><strong>Genres:</strong> {{this.genres}}</p>
+                    <p><strong>Rating:</strong> {{this.rating}}</p>
+                </article>
+            {{/each}}
+        </div>
 
     </div>
 </main>
