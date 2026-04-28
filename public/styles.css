@@ -77,6 +77,14 @@ button:hover {
     transform: translateY(-2px);
 }
 
+#genre-list {
+  color: rgb(0, 0, 0);
+  padding: 6px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
 
 /*************** MOVIE CARDS ***************/
 
@@ -85,6 +93,7 @@ button:hover {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    padding-top: 20px;
 }
 
 .movie-card {
