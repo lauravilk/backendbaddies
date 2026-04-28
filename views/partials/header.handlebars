@@ -5,8 +5,14 @@
         <nav aria-label="Navigation">
             <ul class="main-nav">
                 <li><a href="/movies-page">Movies</a></li>
-                <li><a href="/login">Login</a></li>
+                <li><a href="/login">Login</a></li>               
             </ul>
+            {{!-- Search movie kenttä --}}
+            <form action="/search" method="POST">
+            <label for="searchInput" class="visuallyhidden">Search:</label>
+                <input type="text"name="key" id="searchInput" placeholder="Search movies...">
+                <button id="searchButton">Search</button>
+            </form>
         </nav>
     </div>
 </header>

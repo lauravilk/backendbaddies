@@ -147,7 +147,7 @@ button:hover {
 
 /*************** NAVIGAATTORIT ***************/
 
-nav ul {
+nav ul, nav {
     list-style: none;
     display: flex;
     justify-content: center;

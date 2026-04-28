@@ -1,14 +1,7 @@
 <div class="page-container">
     
-    {{!-- Search movie kenttä --}}
-    <form action="/search" method="POST">
-    <label for="searchInput" class="visuallyhidden">Search:</label>
-        <input type="text"name="key" id="searchInput" placeholder="Search movies...">
-        <button id="searchButton">Search</button>
-    </form>
-    {{#if key}}
-        <h1>Search results "{{key}}" </h1>
-    {{/if}}
+    <h1>All Movies</h1>
+    <p>Browse all available movies in our collection. Search for movies by title or genre.</p>
 
     <label name="Add a new movie">
         <a href="/movies/add-movie/">
@@ -17,25 +10,31 @@
     </label>
 
     {{!-- Hae kategorialla --}}
-    <form action="/movies/search/genre/" method="POST">
-        <label for="movie">Valitse kategoria</label>
-        <select name="genre" id="movie">
-            <option value="Fantasy">Fantasy</option>
-            <option value="Action">Action</option>
-            <option value="Sci-Fi">Sci-Fi</option>
-            <option value="Adventure">Adventure</option>
-            <option value="Animation">Animation</option>
-        </select>
-        <button class="submit">Hae</button>
-    </form>
+    <div class="search-container">
+        <h2>Search movies by genre</h2>
+        <form action="/movies/search/genre/" method="POST">
+            <label for="movie">Select genre</label>
+            <select name="genre" id="movie">
+                <option value="Fantasy">Fantasy</option>
+                <option value="Action">Action</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Animation">Animation</option>
+            </select>
+            <button class="submit">Submit</button>
+        </form>
+    </div>
     {{#if genres}}
-        <h1>Search results "{{genres}}" </h1>
+        <h2>Search results "{{genres}}" </h2>
+    {{/if}}
+    {{#if key}}
+        <h2>Search results "{{key}}" </h2>
     {{/if}}
 
     <div class="movie-container">
     {{#each movies}}
         <div class="movie-card">
-        <h2>{{this.title}}</h2>
+        <h3>{{this.title}}</h3>
         <p><strong>Director:</strong> {{this.director}}</p>
         <p><strong>Release date:</strong> {{this.releaseDate}}</p>
         <p><strong>Genres:</strong> {{this.genres}}</p>
@@ -50,9 +49,7 @@
         </form>
         </div>
     {{/each}}
-    </div>
-
-
+    </div> 
 </div>
 
 <script src="/script.js"></script>
