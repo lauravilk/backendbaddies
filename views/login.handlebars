@@ -3,10 +3,19 @@
 
         <section aria-labelledby="login">
             <h2 id="login">Login</h2>
+
+            {{#if error}}
+                <p style="color:red;">Wrong username or password</p>
+            {{/if}}
+
+            <form action="/api/login" method="POST">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <p>Hint: admin, admin123</p>
+                <button type="submit">Login</button>
+            </form>
         </section>
-
-
-</div>
 
     </div>
 </main>

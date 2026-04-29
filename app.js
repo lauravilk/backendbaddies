@@ -5,6 +5,10 @@ const { engine } = require("express-handlebars");
 const mongoose = require('mongoose');
 require('dotenv').config();
 const Movies = require('./models/Movies');
+const UserModel = require("./models/UserModel");
+const session= require('express-session');
+const passport = require('passport');
+require('./config/passport')(passport);
 
 //middleware uusien elokuvien kuvien lisäystä varten
 const multer = require('multer');
@@ -23,6 +27,26 @@ mongoose.connect(uri)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+
+//stting up session for passport
+app.use(session({
+    //session cookie
+    secret: 'secretkey',
+    //if nothing changes doesnt save session again
+    resave: false,
+    //only creates session when user loggs in
+    saveUninitialized: false
+}));
+
+//passport setup
+app.use(passport.initialize());
+app.use(passport.session());
+
+//adding request user to show on all views
+app.use((req, res, next) => {
+    res.locals.user = req.user;
+    next();
+});
 
 // Handlebar ja partialit
 app.engine("handlebars", engine({
@@ -66,10 +90,24 @@ app.get("/movies-page", async (req, res) => {
     });
 });
 
-// Login sivu
+// Login 
 
 app.get("/login", (req, res) => {
-    res.render("login");
+    res.render("login", {
+        error: req.query.error
+    });
+});
+
+//Logout
+app.get('/logout', (req, res, next) => {
+    //removes user from session
+    req.logout(function(err) {
+        if (err) return next(err);
+        //deleting the whole session
+        req.session.destroy(() => {
+            res.redirect('/login');
+        });
+    });
 });
 
 // Admin sivu
@@ -380,6 +418,12 @@ app.post('/search', async (req, res) => {
         });
     }
  });
+
+ //Login api
+app.post('/api/login', passport.authenticate('local', {
+    successRedirect: '/admin',
+    failureRedirect: '/login?error=true'
+}));
 
 app.listen(PORT, () => {
 console.log(`Server running at http://localhost:${PORT}`);
