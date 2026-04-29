@@ -2,7 +2,7 @@
     <div class="topbar">
         <a href="/" class="site-logo"> Temumdb</a>
 
-        <nav aria-label="TESTAA">
+        <nav>
             <ul class="main-nav">
                 <li><a href="/movies-page">Movies</a></li>
                 <li>
@@ -16,7 +16,7 @@
             </ul>
             {{!-- Search movie kenttä --}}
             <form action="/search" method="POST">
-            <label for="searchInput" class="visuallyhidden">Search:</label>
+            <label for="searchInput" class="visuallyhidden">Search for a movie:</label>
                 <input type="text"name="key" id="searchInput" placeholder="Search movies...">
                 <button id="searchButton">Search</button>
             </form>
