@@ -33,6 +33,9 @@
         "releaseDate": "2012-03-23",
         "genres": ["Action", "Sci-Fi"],
         "rating": 7.2,
-        "watched": false
+        "watched": false,
+        "image": "/images/hungergames.jpg",
+        "alt": "Official movie poster presenting Katniss Everdeen holding a bow and ar…"
+
     }
 ]

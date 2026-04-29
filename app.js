@@ -206,7 +206,7 @@ app.post("/api/movies", uploadImage.single("image"), async (req, res) => {
         });
 
         await newMovie.save();
-        res.redirect("/movies-page");
+        res.redirect("/admin");
 
     }
     catch(err) {
@@ -260,7 +260,7 @@ app.post("/movies/edit/:id", uploadImage.single("image"), async (req,res) => {
     }
 
     await Movies.findByIdAndUpdate(req.params.id, updatedInfo);
-    res.redirect("/movies-page");
+    res.redirect("/admin");
 }
     catch (err){
         res.status(404).send(err.message);
@@ -335,7 +335,7 @@ app.post("/movies/delete/:id", async (req,res) => {
         const movieToRemove = await Movies.findByIdAndDelete(id).lean();
         if (movieToRemove)
         {
-            res.redirect("/movies-page");
+            res.redirect("/admin");
         }
     } catch (err) {
         console.log(error);
