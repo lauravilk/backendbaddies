@@ -72,6 +72,15 @@ app.get("/login", (req, res) => {
     res.render("login");
 });
 
+// Admin sivu
+app.get("/admin", async (req, res) => {
+    const movies = await Movies.find().lean();
+
+    res.render("admin", {
+        movies
+    });
+});
+
 // APIT
 
 // get all movies api

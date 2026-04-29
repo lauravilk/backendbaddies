@@ -3,11 +3,12 @@
     <h1>All Movies</h1>
     <p>Browse all available movies in our collection. Search for movies by title or genre.</p>
 
-    <label name="Add a new movie">
+    <a href="/admin">Admin</a>
+    {{!<label name="Add a new movie">
         <a href="/movies/add-movie/">
                 <button>Add new movie</button>
         </a>
-    </label>
+    </label>}}
 
     {{!-- Hae kategorialla --}}
     <div class="search-container">
@@ -41,12 +42,12 @@
         <p><strong>Rating:</strong> {{this.rating}}</p>
         <p><strong>Watched:</strong> {{this.watched}}</p>
         <img src="{{this.image}}" alt="{{this.alt}}" width="100%">
-        <a href="/movies/edit/{{this._id}}">
+        {{!--- <a href="/movies/edit/{{this._id}}">
                 <button>Edit Movie</button>
             </a>
         <form action="/movies/delete/{{this._id}}" method="POST">
             <button type="button" onclick="confirmDelete(this)">Delete</button>
-        </form>
+        </form> --}}
         </div>
     {{/each}}
     </div> 
