@@ -62,7 +62,7 @@ app.get("/", async (req, res) => {
     try {
         const newestMovies = await Movies.find()
             .sort({ releaseDate: -1 })
-            .limit(4)
+            .limit(8)
             .lean();
 
         res.render("home", {
