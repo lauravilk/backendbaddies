@@ -177,36 +177,31 @@ a.btn:hover {
     backdrop-filter: blur(6px);
 }
 
-.movie-card h2 {
-    margin-top: 0;
-    color: #ffffff;
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    text-align: center;
+.movie-card h3 {
+        font-size: 1rem;
 }
 
 .movie-card p {
     margin: 8px 0;
 }
 
-.movie-card a {
+.movie-card img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+.movie-link {
     margin-top: 0;
     color: #ffffff;
-    font-size: 1.2rem;
     margin-bottom: 10px;
     text-align: center;
     text-decoration: none;
 }
 
-.movie-card a:hover {
+.movie-link:hover {
     color:#4a72d0;
-}
-
-.movie-card img {
-    width: 200px;
-    height: 300px;
-    object-fit: cover;
 }
 
 .visuallyhidden {

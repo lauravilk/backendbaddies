@@ -16,17 +16,10 @@
         <div class="movie-container">
             {{#each newestMovies}}
                 <article class="movie-card">
-                    <h3>{{this.title}}</h3>
-
-                    <img 
-                        src="{{this.image}}" 
-                        alt="Poster of {{this.title}}" 
-                        width="100%"
-                    >
-                    <p><strong>Director:</strong> {{this.director}}</p>
-                    <p><strong>Release date:</strong> {{this.releaseDate}}</p>
-                    <p><strong>Genres:</strong> {{this.genres}}</p>
-                    <p><strong>Rating:</strong> {{this.rating}}</p>
+                    <a href="/movies/{{this._id}}" class="movie-link">
+                    <h3>{{this.title}} </h3>
+                    <img src="{{this.image}}" alt="{{this.alt}}" width="100%">
+                    </a>
                 </article>
             {{/each}}
         </div>
