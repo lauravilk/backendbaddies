@@ -86,6 +86,23 @@ app.get("/movies-page", async (req, res) => {
     });
 });
 
+// Movie details page
+
+app.get('/movies/:id', async (req, res) => {
+    try {
+    const movie = await Movies.findById(req.params.id).lean();
+
+    if (!movie) {
+        return res.status(404).send('Movie not found');
+    }
+
+    res.render('moviedetails', { movie });
+
+    } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+}
+});
 // Login 
 
 app.get("/login", (req, res) => {
