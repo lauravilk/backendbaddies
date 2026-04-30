@@ -20,7 +20,7 @@
             <p><strong>Rating:</strong> {{this.rating}}</p>
             <p><strong>Watched:</strong> {{this.watched}}</p>
             <img src="{{this.image}}" alt="{{this.alt}}" width="100%">
-            <a href="/movies/edit/{{this._id}}" class="btn">Edit Movie</a>       
+            <button type="button" onclick="/movies/edit/{{this._id}}" >Edit Movie</button>       
             <form action="/movies/delete/{{this._id}}" method="POST">
                 <button type="button" onclick="confirmDelete(this)">Delete</button>
             </form>
