@@ -13,13 +13,15 @@
         <div class="movie-container">
         {{#each movies}}
             <div class="movie-card">
-            <h3>{{this.title}}</h3>
+            <a href="/movies/{{this._id}}" class="movie-link">
+                <h3>{{this.title}} </h3>
+                <img src="{{this.image}}" alt="{{this.alt}}" width="100%">
+            </a>
             <p><strong>Director:</strong> {{this.director}}</p>
             <p><strong>Release date:</strong> {{this.releaseDate}}</p>
             <p><strong>Genres:</strong> {{this.genres}}</p>
             <p><strong>Rating:</strong> {{this.rating}}</p>
             <p><strong>Watched:</strong> {{this.watched}}</p>
-            <img src="{{this.image}}" alt="{{this.alt}}" width="100%">
             <a href="/movies/edit/{{this._id}}" class="btn">Edit Movie</a>         
             <form action="/movies/delete/{{this._id}}" method="POST">
                 <button type="button" onclick="confirmDelete(this)">Delete</button>
