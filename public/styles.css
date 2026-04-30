@@ -56,9 +56,17 @@ input {
     margin: 10px;
 }
 
-form {
-    margin: 8px;
+.input-form {
+    display: flex;
+    justify-content: center;
 }
+
+.input-form form {
+    margin: 8px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+};
 
 button {
     padding: 8px 14px;
