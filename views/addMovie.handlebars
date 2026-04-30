@@ -6,13 +6,13 @@
     <div class="input-form">
             <form action="/api/movies" method="POST" enctype="multipart/form-data">
                 <label for="title">Movie title:</label>
-                <input type="text" name="title" value="{{movie.title}}">
+                <input type="text" name="title" id="title" value="{{movie.title}}">
 
                 <label for="director">Director:</label>
-                <input type="text" name="director" value="{{movie.director}}">
+                <input type="text" name="director" id="director" value="{{movie.director}}">
 
                 <label for="releaseDate">Release Date:</label>
-                <input type="date" name="releaseDate" value="{{movie.releaseDate}}">
+                <input type="date" name="releaseDate" id="releaseDate" value="{{movie.releaseDate}}">
 
                 <label for="genres">Genres:</label>
                 <select name="genres" id="genres" value="{{movie.genres}}">
@@ -24,13 +24,13 @@
                 </select>
     
                 <label for="rating">Rating:</label> 
-                <input type="double" name="rating" value="{{movie.rating}}">
+                <input type="double" name="rating" id="rating"  value="{{movie.rating}}">
                 
                 <label for="watched">Watched:</label>
-                <input type="checkbox" name="watched">
+                <input type="checkbox" name="watched" id="watched">
                 
                 <label for="image">Image:</label>
-                <input type="file" name="image">
+                <input type="file" name="image" id="image" >
 
                 <button type="submit">Save</button>
             </form>
