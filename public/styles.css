@@ -73,7 +73,7 @@ input {
     display: flex;
     flex-direction: column;
     width: 400px;
-};
+}
 
 button {
     padding: 8px 14px;
@@ -84,6 +84,8 @@ button {
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s ease;
+    text-decoration: none;
+    font-size: 1rem;
 }
 
 button:hover {
@@ -91,6 +93,27 @@ button:hover {
     color: white;
     transform: translateY(-2px);
 }
+
+a.btn {
+    padding: 8px 14px;
+    background-color: #ffffff;
+    color: #0b1335;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 10px;
+}
+
+a.btn:hover {
+    background: rgba(139, 92, 246, 0.18);
+    color: white;
+    transform: translateY(-2px);
+}
+
 
 #genre-list {
     color: rgb(0, 0, 0);
@@ -116,6 +139,25 @@ button:hover {
     transform: translateY(0);
 }
 
+/*************** HEADER ***************/
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.site-logo {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+}
 
 /*************** MOVIE CARDS ***************/
 
@@ -176,26 +218,6 @@ button:hover {
     padding: 0;
     position: absolute;
     width: 1px;
-}
-
-/*************** HEADER ***************/
-
-.topbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-}
-
-.site-logo {
-    font-size: 2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: white;
-    text-decoration: none;
-    font-family: 'Orbitron', sans-serif;
 }
 
 /*************** NAVIGAATTORIT ***************/

@@ -5,8 +5,8 @@
         <h2>All movies</h2>
 
         <label name="Add a new movie">
-            <a href="/movies/add-movie/">
-                    <button>Add new movie</button>
+            <a href="/movies/add-movie/" class="btn">
+                    Add new movie
             </a>
         </label>
 
@@ -20,7 +20,7 @@
             <p><strong>Rating:</strong> {{this.rating}}</p>
             <p><strong>Watched:</strong> {{this.watched}}</p>
             <img src="{{this.image}}" alt="{{this.alt}}" width="100%">
-            <button type="button" onclick="/movies/edit/{{this._id}}" >Edit Movie</button>       
+            <a href="/movies/edit/{{this._id}}" class="btn">Edit Movie</a>         
             <form action="/movies/delete/{{this._id}}" method="POST">
                 <button type="button" onclick="confirmDelete(this)">Delete</button>
             </form>
