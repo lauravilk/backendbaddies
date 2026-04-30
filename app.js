@@ -393,7 +393,7 @@ app.post('/search', async (req, res) => {
     let data = await Movies.find(
         {
             "$or": [
-                {title: {$regex: key}}
+                {title: {$regex: key, $options: 'i'}}
             ]
         }).lean();
     res.render("movies", {movies: data, key: key});

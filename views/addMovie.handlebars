@@ -1,50 +1,36 @@
 <div class="page-container"> 
     <h1>Add Movie</h1>
 
-    <h2>Input movie info:</h3>
+    <h2>Input movie info:</h2>
     {{!-- Elokuvakortti ja tiedot --}}
     <div class="input-form">
             <form action="/api/movies" method="POST" enctype="multipart/form-data">
-                <label>
-                    Movie title:
-                    <input type="text" name="title" value="{{movie.title}}">
-                </label>
-                <br>
+                <label for="title">Movie title:</label>
+                <input type="text" name="title" value="{{movie.title}}">
 
-                <label>
-                    Director:
-                    <input type="text" name="director" value="{{movie.director}}">
-                </label>
-                <br>
+                <label for="director">Director:</label>
+                <input type="text" name="director" value="{{movie.director}}">
 
-                <label>
-                    Release date:
-                    <input type="date" name="releaseDate" value="{{movie.releaseDate}}">
-                </label>
-                <br>
+                <label for="releaseDate">Release Date:</label>
+                <input type="date" name="releaseDate" value="{{movie.releaseDate}}">
 
-                <label>
-                    Genres:
-                    <input type="text" name="genres" value="{{movie.genres}}">
-                </label>
-                <br>
-
-                <label> 
-                    Rating :
-                    <input type="double" name="rating" value="{{movie.rating}}">
-                </label>
-                <br>
-
-                <label>
-                    Watched:
-                    <input type="checkbox" name="watched" {{#if movie.watched}}checked{{/if}}>
-                </label>
-                <br>
+                <label for="genres">Genres:</label>
+                <select name="genres" id="genres" value="{{movie.genres}}">
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Action">Action</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Animation">Animation</option>
+                </select>
+    
+                <label for="rating">Rating:</label> 
+                <input type="double" name="rating" value="{{movie.rating}}">
                 
-                <label >
-                    Image:
-                    <input type="file" name="image">
-                </label>
+                <label for="watched">Watched:</label>
+                <input type="checkbox" name="watched">
+                
+                <label for="image">Image:</label>
+                <input type="file" name="image">
 
                 <button type="submit">Save</button>
             </form>

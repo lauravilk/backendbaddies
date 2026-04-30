@@ -5,12 +5,15 @@
             <h2 id="login">Login</h2>
 
             {{#if error}}
-                <p style="color:red;">Wrong username or password</p>
+                <p role="alert" style="color:red">Invalid username or password</p>
             {{/if}}
 
             <form action="/api/login" method="POST">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="password" name="password" placeholder="Password" required>
+                <label for="name">Username</label>
+                <input id="name" name="name" type="text" required>
+
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" required>
 
                 <p>Hint: admin, admin123</p>
                 <button type="submit">Login</button>
