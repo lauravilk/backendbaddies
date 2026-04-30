@@ -57,10 +57,6 @@ app.engine("handlebars", engine({
 app.set("view engine", "handlebars");
 app.set("views", path.join(__dirname, "views"));
 
-// Datan luku JSONista
-const filePath = path.join(__dirname, "data", "movies.json");
-let movies = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-
 // Home route ja newest movies
 app.get("/", async (req, res) => {
     try {
