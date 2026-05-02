@@ -1,9 +1,6 @@
 body {
     margin: 0;
-    padding: 20px;
     font-family: 'Inter', sans-serif;
-    max-width: 1200px;
-    margin: 0 auto;
     width: 100%;
 
 
@@ -49,6 +46,13 @@ h2 {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
+}
+
+.section-divider {
+    width: 100%;
+    max-width: 800px;
+    border-top: 1px solid #444;
+    margin: 30px auto;
 }
 
 /*************** BUTTONS SEARCH ETC ***************/
@@ -149,6 +153,7 @@ a.btn:hover {
     gap: 2rem;
     flex-wrap: wrap;
     margin-bottom: 2rem;
+    background-color: #090e1b;
 }
 
 .site-logo {
@@ -171,7 +176,7 @@ a.btn:hover {
 }
 
 .movie-card {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: #090e1b;
     border-radius: 10px;
     padding: 20px;
     width: 200px;
