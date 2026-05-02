@@ -257,8 +257,13 @@ nav a {
 /*************** FOOTER ************/
 
 .footer {
-    margin-top: 3rem;
+    margin-top: 4rem;
     padding: 2rem;
     text-align: center;
     color: #cbd5e1;
+    background-color: #090e1b;
+}
+
+.footer p {
+    font-size: 0.8rem;
 }
