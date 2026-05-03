@@ -11,7 +11,8 @@ const movieSchema = new mongoose.Schema({
     rating: Number,
     watched: Boolean,
     image: String,
-    alt: String
+    alt: String,
+    description: String
 });
 
 module.exports = mongoose.model("Movies", movieSchema);

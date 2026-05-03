@@ -220,7 +220,7 @@ app.get('/movies/add-movie/', (req,res) => {
 //api lisää elokuva
 app.post("/api/movies", uploadImage.single("image"), async (req, res) => {
     try{
-        const { title, director, releaseDate, genres, rating, watched } = req.body;
+        const {description,title, director, releaseDate, genres, rating, watched, alt } = req.body;
         
         //tietojen validointi
         if (!title || !director || !releaseDate || !genres || rating === undefined) {
@@ -228,15 +228,17 @@ app.post("/api/movies", uploadImage.single("image"), async (req, res) => {
         }
 
         const newMovie = new Movies({
+            description,
             title,
             director,
             releaseDate,
             genres: Array.isArray(genres) ? genres : genres.split(",").map(g => g.trim()),
             rating: Number(rating),
             watched: watched === "true" || watched === "on",
+            alt,
 
             //kuvan lisäys
-            image: req.file ? "/images/" + req.file.filename : null
+            image: req.file ? "/images/" + req.file.filename : null,
         });
 
         await newMovie.save();
