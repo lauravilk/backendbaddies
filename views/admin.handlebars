@@ -24,7 +24,7 @@
             <p><strong>Watched:</strong> {{this.watched}}</p>
             <a href="/movies/edit/{{this._id}}" class="btn">Edit Movie</a>         
             <form action="/movies/delete/{{this._id}}" method="POST">
-                <button type="button" onclick="confirmDelete(this)">Delete</button>
+                <button type="button" onclick="confirmDelete(this)" aria-label="Delete movie: {{this.title}}">Delete</button>
             </form>
             </div>
         {{/each}}
