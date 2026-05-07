@@ -111,6 +111,7 @@ app.get("/admin", async (req, res) => {
     const movies = await Movies.find().lean();
 
     res.render("admin", {
+        title: "Adming page",
         movies
     });
 });
