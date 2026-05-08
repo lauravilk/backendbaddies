@@ -215,7 +215,9 @@ const storage = multer.diskStorage({
 const uploadImage = multer ({ storage });
 
 app.get('/movies/add-movie/', (req,res) => {
-    res.render("addMovie");
+    res.render("addMovie", {
+        title: "Add new movie page"
+}   );
 });
 
 //api lisää elokuva
@@ -277,7 +279,7 @@ app.get("/movies/edit/:value", async (req,res) => {
     if (!movie){
         return res.status(404).send("Movie not found");
     }
-    res.render("editMovie", { movie });
+    res.render("editMovie", { movie, title: "Edit movie page" });
 });
 
 app.post("/movies/edit/:id", uploadImage.single("image"), async (req,res) => {
